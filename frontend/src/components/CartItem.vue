@@ -13,13 +13,6 @@
         <p class="text-gray-600 mt-1">${{ item.price.toFixed(2) }}</p>
 
         <div class="flex items-center mt-2">
-          <Button
-            icon="pi pi-minus"
-            class="p-button-text p-button-rounded p-button-sm"
-            @click="decreaseQuantity"
-            :disabled="item.quantity <= 1"
-          />
-
           <InputNumber
             v-model="quantity"
             :min="1"
@@ -30,12 +23,6 @@
             incrementButtonIcon="pi pi-plus"
             decrementButtonIcon="pi pi-minus"
             @update:modelValue="updateQuantity"
-          />
-
-          <Button
-            icon="pi pi-plus"
-            class="p-button-text p-button-rounded p-button-sm"
-            @click="increaseQuantity"
           />
         </div>
       </div>

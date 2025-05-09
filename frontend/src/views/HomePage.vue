@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto px-8 py-8">
     <h1 class="text-3xl font-bold mb-6">Featured Products</h1>
 
     <div v-if="loading" class="flex justify-center items-center h-64">

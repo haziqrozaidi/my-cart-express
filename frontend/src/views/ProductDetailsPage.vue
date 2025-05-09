@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto px-8 py-8">
     <Breadcrumb :model="breadcrumbItems" class="mb-6" />
     <ProductDetails :productId="productId" />
   </div>

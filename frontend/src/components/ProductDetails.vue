@@ -70,16 +70,14 @@
           </div>
 
           <div class="flex items-center gap-4">
-            <InputNumber
-              v-model="quantity"
-              :min="1"
-              :max="product.stock"
-              showButtons
-              buttonLayout="horizontal"
-              incrementButtonIcon="pi pi-plus"
-              decrementButtonIcon="pi pi-minus"
-              class="w-32"
-            />
+            <InputNumber v-model="quantity" :min="1" :max="product.stock" inputId="horizontal-buttons" showButtons buttonLayout="horizontal">
+                <template #incrementbuttonicon>
+                    <span class="pi pi-plus" />
+                </template>
+                <template #decrementbuttonicon>
+                    <span class="pi pi-minus" />
+                </template>
+            </InputNumber>
 
             <Button
               label="Add to Cart"
@@ -97,19 +95,19 @@
           <TabPanel header="Details">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
               <div class="border-b pb-2">
-                <span class="font-semibold">Discount Percentage:</span>
+                <span class="font-semibold">Discount Percentage: </span>
                 <span>{{ product.discountPercentage }}%</span>
               </div>
               <div class="border-b pb-2">
-                <span class="font-semibold">SKU:</span>
+                <span class="font-semibold">SKU: </span>
                 <span>PROD-{{ product.id }}</span>
               </div>
               <div class="border-b pb-2">
-                <span class="font-semibold">Category:</span>
+                <span class="font-semibold">Category: </span>
                 <span>{{ product.category }}</span>
               </div>
               <div class="border-b pb-2">
-                <span class="font-semibold">Brand:</span>
+                <span class="font-semibold">Brand: </span>
                 <span>{{ product.brand }}</span>
               </div>
             </div>
