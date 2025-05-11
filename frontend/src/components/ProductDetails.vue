@@ -58,14 +58,23 @@
 
               <div class="text-gray-600">Category:</div>
               <div class="font-medium">{{ product.category }}</div>
-
-              <div class="text-gray-600">Stock:</div>
+              
+              <div class="text-gray-600">Weight:</div>
+              <div class="font-medium">{{ product.weight }} oz</div>
+              
+              <div class="text-gray-600">Availability:</div>
               <div class="font-medium">
                 <Badge
                   :value="product.stock > 0 ? 'In Stock' : 'Out of Stock'"
                   :severity="product.stock > 0 ? 'success' : 'danger'"
                 />
               </div>
+              
+              <div class="text-gray-600">Warranty:</div>
+              <div class="font-medium">{{ product.warrantyInformation }}</div>
+
+              <div class="text-gray-600">Stock:</div>
+              <div class="font-medium">{{ product.stock }}</div>
             </div>
           </div>
 
@@ -93,41 +102,104 @@
       <div class="mt-10">
         <TabView>
           <TabPanel header="Details">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-              <div class="border-b pb-2">
-                <span class="font-semibold">Discount Percentage: </span>
-                <span>{{ product.discountPercentage }}%</span>
-              </div>
-              <div class="border-b pb-2">
-                <span class="font-semibold">SKU: </span>
-                <span>PROD-{{ product.id }}</span>
-              </div>
-              <div class="border-b pb-2">
-                <span class="font-semibold">Category: </span>
-                <span>{{ product.category }}</span>
-              </div>
-              <div class="border-b pb-2">
-                <span class="font-semibold">Brand: </span>
-                <span>{{ product.brand }}</span>
+            <div class="p-4">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6">
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">Basic Information</h3>
+                  <div>
+                    <div class="grid grid-cols-[120px_1fr] gap-y-2">
+                      <div>Brand:</div>
+                      <div>{{ product.brand }}</div>
+                      
+                      <div>Category:</div>
+                      <div>{{ product.category }}</div>
+                      
+                      <div>SKU:</div>
+                      <div>{{ product.sku }}</div>
+                      
+                      <div>Weight:</div>
+                      <div>{{ product.weight }} oz</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">Physical Details</h3>
+                  <div>
+                    <div class="grid grid-cols-[120px_1fr] gap-y-2">
+                      <div>Dimensions:</div>
+                      <div>{{ product.dimensions.width }} × {{ product.dimensions.height }} × {{ product.dimensions.depth }} cm</div>
+                      
+                      <div>Availability:</div>
+                      <div>{{ product.availabilityStatus }}</div>
+                      
+                      <div>Warranty:</div>
+                      <div>{{ product.warrantyInformation }}</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">Purchase Details</h3>
+                  <div>
+                    <div class="grid grid-cols-[120px_1fr] gap-y-2">
+                      <div>Price:</div>
+                      <div>${{ product.price.toFixed(2) }}</div>
+                      
+                      <div>Discount:</div>
+                      <div>{{ product.discountPercentage }}%</div>
+                      
+                      <div>Return Policy:</div>
+                      <div>{{ product.returnPolicy }}</div>
+                      
+                      <div>Last Updated:</div>
+                      <div>{{ new Date(product.meta.updatedAt).toLocaleString() }}</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </TabPanel>
 
-          <TabPanel header="Shipping">
+          <TabPanel header="Shipping & Returns">
             <div class="p-4">
-              <h3 class="text-lg font-semibold mb-2">Shipping Information</h3>
-              <p>Free shipping on all orders over $50.</p>
-              <p>Standard shipping: 3-5 business days.</p>
-              <p>Express shipping: 1-2 business days (additional fee).</p>
-            </div>
-          </TabPanel>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">Shipping Information</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <i class="pi pi-truck mr-2 mt-1 text-blue-500"></i>
+                      <span>Free shipping on all orders over $50.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="pi pi-calendar mr-2 mt-1 text-blue-500"></i>
+                      <span>Standard shipping: 3-5 business days.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="pi pi-bolt mr-2 mt-1 text-blue-500"></i>
+                      <span>Express shipping: 1-2 business days (additional fee).</span>
+                    </li>
+                  </ul>
+                </div>
 
-          <TabPanel header="Returns">
-            <div class="p-4">
-              <h3 class="text-lg font-semibold mb-2">Return Policy</h3>
-              <p>We accept returns within 30 days of purchase.</p>
-              <p>Items must be unused and in original packaging.</p>
-              <p>Contact customer service to initiate a return.</p>
+                <div>
+                  <h3 class="text-lg font-semibold mb-2">Return Policy</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <i class="pi pi-calendar mr-2 mt-1 text-blue-500"></i>
+                      <span>We accept returns within 30 days of purchase.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="pi pi-box mr-2 mt-1 text-blue-500"></i>
+                      <span>Items must be unused and in original packaging.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="pi pi-phone mr-2 mt-1 text-blue-500"></i>
+                      <span>Contact customer service to initiate a return.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </TabPanel>
         </TabView>
