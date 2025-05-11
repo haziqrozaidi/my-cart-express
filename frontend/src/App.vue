@@ -8,7 +8,7 @@
 
     <Footer />
 
-    <Toast />
+    <Toast position='bottom-right' />
   </div>
 </template>
 

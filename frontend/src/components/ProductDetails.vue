@@ -139,6 +139,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useCartStore } from '../stores/cart'
+import { useToast } from 'primevue/usetoast'
 import Button from 'primevue/button'
 import Rating from 'primevue/rating'
 import Badge from 'primevue/badge'
@@ -160,6 +161,7 @@ const loading = ref(true)
 const error = ref(null)
 const quantity = ref(1)
 const currentImage = ref('')
+const toast = useToast()
 
 const fetchProductDetails = async () => {
   loading.value = true
@@ -185,6 +187,12 @@ const fetchProductDetails = async () => {
 const addToCart = () => {
   if (product.value && product.value.stock > 0) {
     cartStore.addToCart(product.value, quantity.value)
+    toast.add({
+      severity: 'success',
+      summary: 'Added to Cart',
+      detail: `${product.value.title} has been added to your cart.`,
+      life: 3000,
+    })
   }
 }
 

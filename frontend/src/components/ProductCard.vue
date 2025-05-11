@@ -36,6 +36,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../stores/cart'
+import { useToast } from 'primevue/usetoast'
 import Card from 'primevue/card'
 import Button from 'primevue/button'
 import Rating from 'primevue/rating'
@@ -49,6 +50,7 @@ const props = defineProps({
 
 const router = useRouter()
 const cartStore = useCartStore()
+const toast = useToast()
 
 const navigateToProduct = () => {
   router.push(`/product/${props.product.id}`)
@@ -56,5 +58,11 @@ const navigateToProduct = () => {
 
 const addToCart = () => {
   cartStore.addToCart(props.product)
+  toast.add({
+    severity: 'success',
+    summary: 'Added to Cart',
+    detail: `${props.product.title} has been added to your cart.`,
+    life: 3000,
+  })
 }
 </script>
