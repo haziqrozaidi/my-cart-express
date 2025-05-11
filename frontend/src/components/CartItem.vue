@@ -1,7 +1,7 @@
 <template>
   <div class="border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
     <div class="flex flex-col md:flex-row gap-4">
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 self-center">
         <img :src="item.thumbnail" :alt="item.title" class="w-24 h-24 object-cover rounded" />
       </div>
 
@@ -17,7 +17,7 @@
             v-model="quantity"
             :min="1"
             :max="99"
-            inputClass="w-16 text-center"
+            inputClass="w-full md:w-16 text-center"
             showButtons
             buttonLayout="horizontal"
             incrementButtonIcon="pi pi-plus"
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col justify-between items-end">
+      <div class="flex flex-row md:flex-col justify-between items-center md:items-end">
         <div class="font-semibold text-lg">${{ (item.price * item.quantity).toFixed(2) }}</div>
 
         <Button icon="pi pi-trash" class="p-button-danger p-button-text" @click="removeItem" />

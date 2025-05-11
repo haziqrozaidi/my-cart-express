@@ -69,8 +69,8 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-4">
-            <InputNumber v-model="quantity" :min="1" :max="product.stock" inputId="horizontal-buttons" showButtons buttonLayout="horizontal">
+          <div class="flex flex-col md:flex-row items-start gap-4">
+            <InputNumber input-class="md:w-full" v-model="quantity" :min="1" :max="product.stock" inputId="horizontal-buttons" showButtons buttonLayout="horizontal">
                 <template #incrementbuttonicon>
                     <span class="pi pi-plus" />
                 </template>
